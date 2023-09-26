@@ -21,9 +21,11 @@ def createRectangle(sizeX, sizeY, position, fillColor):
 flagSizeX = 350
 flagSizeY = 550
 
-createRectangle(flagSizeX, flagSizeY, (-300, 200), "red")
-print(t.position())
-t.back(flagSizeY/3)
-createRectangle(flagSizeX, flagSizeY/3, t.position(), "black")
-
-t.done()
+createRectangle(flagSizeX, flagSizeY, (-300, 200), "green")
+t.back(flagSizeX/3)
+createRectangle(flagSizeY, flagSizeX/3, t.pos(), "black")
+t.right(90)
+t.back(flagSizeX/3)
+createRectangle(flagSizeY, flagSizeX/3, t.pos(), "white")
+#t.done()
+t.exitonclick()
