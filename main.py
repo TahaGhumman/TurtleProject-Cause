@@ -32,3 +32,5 @@ t.back(flagSizeX/3)
 createRectangle(flagSizeY, flagSizeX/3, t.pos(), "white")
 
 t.exitonclick()
+
+print("Reached")
