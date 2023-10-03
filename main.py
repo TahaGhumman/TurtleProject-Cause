@@ -108,5 +108,44 @@ t.pendown()
 t.write("PALESTINE", font=("Futura", 40, "bold"))
 t.penup()
 
+# Flames - Rashed Omani
+window = t.Screen()
+window.title('Free Palestine')
 
+t.color('red', 'orange')
+
+t.pensize(1)
+t.width()
+t.pencolor('red')
+t.fillcolor('orange')
+
+t.penup()
+t.setposition(-300, 200)
+t.speed(0)
+t.begin_fill()
+
+# Creates Flame Wisp
+def createWisp(radius):
+    t.circle(radius, 90)
+    t.left(180)
+    t.circle(radius, 90)
+
+t.pendown()
+
+# Create Blinking Effect
+for i in range(20):
+    t.begin_fill()
+    t.setheading(0)
+    if i % 2 == 0:
+        t.color("orange", "red")
+    else:
+        t.color("red", "orange")
+    for x in range(5):
+        createWisp(55)
+    t.left(180)
+    t.forward(5 * 55 * 2)
+    t.end_fill()
+    sleep(1)
+
+# Finish
 t.exitonclick()
