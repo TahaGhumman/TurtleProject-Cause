@@ -8,6 +8,14 @@ Creating the Palestinian Flag for the crisis in Palestine/Israel using Python Tu
 Focuses on exerting skills within if statements, for loops, variables, and understanding Python Turtle. 
 """
 
+t.speed(0)
+t.colormode(255)
+
+
+#Window
+window = t.Screen()
+window.title('Free Palestine')
+
 #Flag Size
 flagSizeX = 350
 flagSizeY = 550
@@ -26,7 +34,7 @@ def createWisp(radius):
     Creates a triangular 'wisp' shape.
 
     :params radius: the length from the centre of the circle, creates the width of the wisp.
-    
+
     """
     t.circle(radius, 90)
     t.left(180)
@@ -64,32 +72,31 @@ def createRectangle(sizeX: int, sizeY: int, position: tuple, fillColor: Any, pen
     t.end_fill()
     return
 
-t.speed(0)
-t.colormode(255)
+# Flag Triangle - Taha Ghumman
+def createFlag(flagSizeX, flagSizeY):
+    # Flag Base
+    createRectangle(flagSizeX, flagSizeY, (-300, 200), greenColor)
+    t.back(flagSizeX/3)
 
-# Flag Base
-createRectangle(flagSizeX, flagSizeY, (-300, 200), greenColor)
-t.back(flagSizeX/3)
+    createRectangle(flagSizeY, flagSizeX/3, t.pos(), blackColor)
+    t.right(90)
+    t.back(flagSizeX/3)
 
-createRectangle(flagSizeY, flagSizeX/3, t.pos(), blackColor)
-t.right(90)
-t.back(flagSizeX/3)
+    createRectangle(flagSizeY, flagSizeX/3, t.pos(), whiteColor)
 
-createRectangle(flagSizeY, flagSizeX/3, t.pos(), whiteColor)
+    # Flag Triangle
+    t.penup()
+    t.setpos(-300, 200)
+    t.pendown()
+    t.begin_fill()
+    t.color(redColor)
+    t.left(-225)
+    t.forward(flagSizeY/2.22)
+    t.left(-90)
+    t.forward(flagSizeY/2.22)
+    t.end_fill()
 
-# Flag Triangle
-t.penup()
-t.setpos(-300, 200)
-t.pendown()
-t.begin_fill()
-t.color(redColor)
-t.left(-225)
-t.forward(flagSizeY/2.22)
-t.left(-90)
-t.forward(flagSizeY/2.22)
-t.end_fill()
-
-
+createFlag(flagSizeX, flagSizeY)
 # Fist - Troy Williams
 
 # Wrist
@@ -139,8 +146,6 @@ t.write("PALESTINE", font=("Futura", 40, "bold"))
 t.penup()
 
 # Flames - Rashed Omani
-window = t.Screen()
-window.title('Free Palestine')
 
 t.color('red', 'orange')
 
