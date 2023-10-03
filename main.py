@@ -23,8 +23,6 @@ def createRectangle(sizeX, sizeY, position, fillColor, penColor = None):
     t.end_fill()
     return
 
-def onKey(x, y):
-    print("Reached")
 #Flag Size
 flagSizeX = 350
 flagSizeY = 550
@@ -110,5 +108,5 @@ t.pendown()
 t.write("PALESTINE", font=("Futura", 40, "bold"))
 t.penup()
 
-t.onclick(onKey, 2)
+
 t.exitonclick()
