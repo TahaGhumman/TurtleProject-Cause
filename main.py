@@ -10,7 +10,7 @@ Focuses on exerting skills within if statements, for loops, variables, and under
 
 t.speed(0)
 t.colormode(255)
-
+t.hideturtle()
 
 #Window
 window = t.Screen()
@@ -72,8 +72,17 @@ def createRectangle(sizeX: int, sizeY: int, position: tuple, fillColor: Any, pen
     t.end_fill()
     return
 
-# Flag Triangle - Taha Ghumman
-def createFlag(flagSizeX, flagSizeY):
+# Flag - Taha Ghumman
+def createFlag(flagSizeX: int, flagSizeY: int):
+    """
+    Creates the Palestinian flag, by first making the base of the flag green, 
+    then adding a black rectangle from the top of the flag towards 1/3rd inwards,
+    then creates a white rectangle underneath the black rectangle 1/3rd from the bottom.
+
+
+    :params flagSizeX: Represents how far the flag stretches horizontally
+            flagsizeY: Represents how far the flag stretches vertically
+    """
     # Flag Base
     createRectangle(flagSizeX, flagSizeY, (-300, 200), greenColor)
     t.back(flagSizeX/3)
@@ -96,85 +105,111 @@ def createFlag(flagSizeX, flagSizeY):
     t.forward(flagSizeY/2.22)
     t.end_fill()
 
+# Fist of Power - Troy Williams
+def createFist():
+    """
+    Creates the 'Fist of Power' by using the rectangle function allowing it to first form the wrist portion,
+    then the palm portion, then the fingers and finally the thumb.
+
+    """
+    # Wrist
+    t.setheading(82)
+    createRectangle(35, 80, (-40,-70), greenColor, whiteColor)
+    t.setheading(85)
+    createRectangle(30, 90, (1,-77), blackColor, whiteColor)
+
+    # Palm
+    t.setheading(68)
+    createRectangle(25, 75, (12,-15), blackColor)
+    t.setheading(140)
+    createRectangle(35, 45, (14,1), blackColor)
+    t.setheading(140)
+    createRectangle(35, 80, (-15,-25), greenColor)
+
+    # Fingers
+    t.setheading(58)
+    createRectangle(25, 30, (-25,105), redColor, whiteColor)
+    t.setheading(55)
+    createRectangle(25, 35, (-3,90), redColor, whiteColor)
+    t.setheading(50)
+    createRectangle(25, 60, (3,58), redColor, whiteColor)
+    t.setheading(48)
+    createRectangle(25, 60, (24,42), redColor, whiteColor)
+
+    # Thumb
+    t.setheading(58)
+    createRectangle(40, 90, (-76,26), greenColor)
+    t.setheading(148)
+    createRectangle(30, 65, (11,43), greenColor, whiteColor)
+
+# Create Text - Troy Williams
+def writingText():
+    """
+    Creates the top text writing, "F R E E" in the black section of the flag,
+    and a bottom text writing, "PALESTINE" in the green section of the flag.
+    """
+    # Top Text
+    t.goto(-90,130)
+    t.pendown()
+    t.write("F R E E", font=("Futura", 40, "bold"))
+    t.penup()
+
+    # Bottom Text
+    t.goto(-140,-150)
+    t.pendown()
+    t.write("PALESTINE", font=("Futura", 40, "bold"))
+    t.penup()
+
+# Creates Blinking Flames - Rashed Amani
+def createFlame():
+    """
+    Creates multi colored flames using the wisp function to create each 'wisp' of flame.
+    The flame colors transition from orange, red, and yellow and repeats 50 times, creating a blinking effect.
+    """
+    
+    t.color('red', 'orange')
+
+    t.pensize(1)
+    t.width()
+    t.pencolor('red')
+    t.fillcolor('orange')
+
+    t.penup()
+    t.setposition(-300, 200)
+    t.speed(0)
+    t.begin_fill()
+
+    t.pendown()
+
+    # Create Blinking Effect
+    for i in range(50):
+        t.begin_fill()
+        t.setheading(0)
+        if i % 3 == 1:
+            t.color("orange", "red")
+        elif i % 3 == 2:
+            t.color("red", "yellow")
+        else:
+            t.color("yellow", "orange")
+        for x in range(5):
+            createWisp(55)
+        t.left(180)
+        t.forward(5 * 55 * 2)
+        t.end_fill()
+        sleep(0.25)
+
+# Main
 createFlag(flagSizeX, flagSizeY)
-# Fist - Troy Williams
+createFist()
 
-# Wrist
-t.setheading(82)
-createRectangle(35, 80, (-40,-70), greenColor, whiteColor)
-t.setheading(85)
-createRectangle(30, 90, (1,-77), blackColor, whiteColor)
-
-# Palm
-t.setheading(68)
-createRectangle(25, 75, (12,-15), blackColor)
-t.setheading(140)
-createRectangle(35, 45, (14,1), blackColor)
-t.setheading(140)
-createRectangle(35, 80, (-15,-25), greenColor)
-
-# Fingers
-t.setheading(58)
-createRectangle(25, 30, (-25,105), redColor, whiteColor)
-t.setheading(55)
-createRectangle(25, 35, (-3,90), redColor, whiteColor)
-t.setheading(50)
-createRectangle(25, 60, (3,58), redColor, whiteColor)
-t.setheading(48)
-createRectangle(25, 60, (24,42), redColor, whiteColor)
-
-# Thumb
-t.setheading(58)
-createRectangle(40, 90, (-76,26), greenColor)
-t.setheading(148)
-createRectangle(30, 65, (11,43), greenColor, whiteColor)
-
-# Writing
+# Writing - Troy Williams
 t.penup()
 t.pencolor(whiteColor)
 
-# Top Text
-t.goto(-90,130)
-t.pendown()
-t.write("F R E E", font=("Futura", 40, "bold"))
-t.penup()
-
-# Bottom Text
-t.goto(-140,-150)
-t.pendown()
-t.write("PALESTINE", font=("Futura", 40, "bold"))
-t.penup()
+writingText()
 
 # Flames - Rashed Omani
-
-t.color('red', 'orange')
-
-t.pensize(1)
-t.width()
-t.pencolor('red')
-t.fillcolor('orange')
-
-t.penup()
-t.setposition(-300, 200)
-t.speed(0)
-t.begin_fill()
-
-t.pendown()
-
-# Create Blinking Effect
-for i in range(20):
-    t.begin_fill()
-    t.setheading(0)
-    if i % 2 == 0:
-        t.color("orange", "red")
-    else:
-        t.color("red", "orange")
-    for x in range(5):
-        createWisp(55)
-    t.left(180)
-    t.forward(5 * 55 * 2)
-    t.end_fill()
-    sleep(1)
+createFlame()
 
 # Finish
 t.exitonclick()
